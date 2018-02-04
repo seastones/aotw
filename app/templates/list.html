@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ list_type }}</h1>
+    {% for album in to_list %}
+    {{ album }}<br>
+    {% endfor %}
+    <br>
+    <br>
+    <br>
+    {% if page != 1 %}
+    <a href="/{{ page_type }}/page1">First</a>
+    <a href="/{{ page_type }}/page{{ page - 1 }}">Prev.</a>
+    {% endif %}
+    <b>Current Page: {{ page }}</b>
+    {% if page != last_page %}
+    <a href="/{{ page_type }}/page{{ page + 1 }}">Next</a>
+    <a href="/{{ page_type }}/page{{ last_page }}">Last</a>
+    {% endif %}
+{% endblock %}

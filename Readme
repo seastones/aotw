@@ -1,0 +1,24 @@
+Simple Album of the Week Community Site
+
+Requires: {TBD}
+
+Hosts a simple site where users can submit albums that will be randomly selected on a weekly basis.
+
+To Do...
+>some way of decreasing spam from single users
+>browsable list of submissions
+>Last.FM lookup for information (similar artists, similar albums, album art)
+>caching for Last.FM data
+>CSS Theme and JavaScript beautifications
+
+CURRENT ENTRIES IN DATABASE
+
+>Keys
+current_submission : Used to call the correct hash for the current picked album.
+
+>Lists
+submission_list : Contains all submissions from which to pick.
+previous_submissions: Contains all submissions that have already been picked.
+
+>Hashes
+Indidual per album: Contains all of the information regarding the submission.

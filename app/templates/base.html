@@ -1,0 +1,23 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} :: Album of the Week</title>
+        {% else %}
+        <title>Album of The Week</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>Album of the Week: <a href="{{ url_for('index') }}">Home</a> <a href="{{ url_for('submit') }}">Submit</a> <a href="{{ url_for('current_submission_list')}}">Pending Suggestions</a> <a href={{ url_for('past_submissions_list')}}>Previous Suggestions</a></div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

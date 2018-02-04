@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Submission Form</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.album_title.label }}<br>
+            {{ form.album_title(size=50) }}<br>
+            {% for error in form.album_title.errors %}
+            <span style=color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.album_artist.label }}<br>
+            {{ form.album_artist(size=50) }}<br>
+            {% for error in form.album_artist.errors %}
+            <span style=color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.user.label }}<br>
+            {{ form.user(size=30) }}
+        </p>
+        <p>
+            {{ form.details.label}}<br>
+            {{ form.details(cols="70", rows="10") }}
+        </p>
+        <p>
+        {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}
+            
+            

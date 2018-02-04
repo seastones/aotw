@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+        {% if error_report%}
+        <h1>{{ error_report }}</h1>
+        {% else %}
+        <h1>{{ info.album_title }} <i>by</i> {{ info.album_artist }}</h1>
+        Submitted by <b>{{ info.user }}</b><br>
+        {{ info.details }}
+        {% endif %}
+{% endblock %}
