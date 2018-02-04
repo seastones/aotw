@@ -14,27 +14,21 @@ def get_current_album():
         return current_album
 
 def set_current_album():
-    print("Checking Submissions")
     total_submissions = db.llen('submission_list')
-    print(total_submissions)
     if total_submissions == 0:
         return False
     else:
-        print("More than one, selecting at random.")
         new_album_index = random.randint(0,(total_submissions - 1))
-        new_album_hash = db.lindex('submission_list', new_album_index)            
-        print(new_album_index)
-        print(new_album_hash)
-        print(db.set('current_album_hash', new_album_hash))
-        print(db.lrem('submission_list',0,new_album_hash))
-        print(db.lpush('previous_submissions',new_album_hash))
+        new_album_hash = db.lindex('submission_list', new_album_index)
+        db.set('current_album_hash', new_album_hash)
+        db.lrem('submission_list',0,new_album_hash)
+        db.lpush('previous_submissions',new_album_hash)
         return True
     
 def submit_album(submit_dict):
     if submit_dict['user'] == "":
         submit_dict['user'] = "Anonymous"
-    db.incr('current_submission',amount=1)
-    hash_number = db.get('current_submission')
+    hash_number = db.incr('current_submission',amount=1)
     db.hmset(hash_number,submit_dict)
     db.lpush('submission_list',hash_number)
     return True
