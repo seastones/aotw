@@ -47,3 +47,12 @@ def submission_names(list_name, start, end):
 def db_list_length(list_name):
     length = db.llen(list_name)
     return length
+
+def can_user_post(ip):
+    submissions = db.get(ip)
+    print(submissions)
+    if submissions == None or int(submissions) < Config.submissions_per_week:
+        db.incr(ip,amount=1)
+        return True
+    else:
+        return False

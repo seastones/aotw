@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import SubmissionForm
 import app.database as database
@@ -18,10 +18,14 @@ def submit():
     form = SubmissionForm()
     if form.validate_on_submit():
         db_submission = {'album_title': form.album_title.data, 'album_artist': form.album_artist.data, 'user': form.user.data, 'details': form.details.data}
-        if database.submit_album(db_submission) == True:
-            flash("Album submitted!")
+        if database.can_user_post(request.remote_addr) == True:            
+            if database.submit_album(db_submission) == True:
+                flash("Album submitted!")
+            else:
+                flash("Something may have gone wrong...")
+            return redirect(url_for('index'))
         else:
-            flash("Something may have gone wrong...")
+            flash("You can not make any submissions at this time.")
         return redirect(url_for('index'))
     return render_template('submission.html', title='Submission Form', form=form)
 

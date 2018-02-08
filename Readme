@@ -14,7 +14,8 @@ To Do...
 CURRENT ENTRIES IN DATABASE
 
 >Keys
-current_submission : Used to call the correct hash for the current picked album.
+current_album_hash : Used to call the correct hash for the current picked album.
+current_submission : Contains the last used hash ID
 
 >Lists
 submission_list : Contains all submissions from which to pick.
